@@ -1,0 +1,50 @@
+{%extends 'employer_base.html'%}
+{%block content%}
+
+<hr class="mt-0 mb-0 border-white border-2">
+<div class=" bg-dark-subtle  py-4">
+  <div class="container">
+    <div class="row justify-content-center  ">
+      <div class="col-md-7">
+        <form method="GET" action="{% url 'employer_job_search' %}" class="d-flex gap-2">
+            <input type="text" name="keyword"
+              class="form-control"
+              placeholder="Job title ">
+            <input type="text" name="location"
+              class="form-control"
+              placeholder="Location">
+            <button type="submit" class="btn btn-primary active" data-bs-toggle>
+              Search
+            </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% if jobs %}
+  <div class="row w-75 mx-auto pt-4">
+    <div class="col-1"></div>
+      <div class="col-11">
+        <h3 class="fw-bold">Your Posted Jobs</h3>
+      </div>
+    </div>
+    <div class="container mt-4 ">
+    {% for job in jobs %}
+    <div class="row border p-2 rounded shadow-sm align-item-center mb-4 w-75 mx-auto ps-5">
+      <a class="fs-5 text-decoration-none text-black fw-bold link-primary d-inline" href="{% url 'employer_job_details' job.id %}">{{ job.job_title }}</a>
+      <p class="col-md-3">{{job.employer.company_name}}</p>
+      <p class="col-md-2"><i class="bi bi-geo-alt-fill"></i>{{ job.location }}</p>
+      <p class="col-md-2">{{ job.job_type }}</p>
+      <p class="col-md-2">&#8377;{{job.salary}}</p>
+      <div class="col-md-3">
+        <a class="fw-semibold" href="{% url 'job_applications' job.id %}">Applications</a>
+      </div>
+    </div>
+    {% empty %}
+    <p class="text-center fw-semibold text-muted">You are not Posted Jobs...</p>
+    {% endfor %}
+  </div>
+{% else %}
+    <p class="text-center text-danger mt-3 fw-semibold">No jobs found.</p>
+{% endif %}
+{%endblock content%}

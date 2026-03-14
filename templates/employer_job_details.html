@@ -1,0 +1,39 @@
+{%extends 'employer_base.html'%}
+{%block content%}
+<div >
+    <h2 class="text-center p-3">{{ job.job_title }}</h2>
+    <div class="row border pt-5 pb-5 rounded shadow-lg align-item-center w-75 mx-auto ps-5 pe-5">
+        <div class="container">
+            <div class="row"> 
+                <h4 class="text-black fw-bold pb-2">{{ job.job_title }}</h4>
+                <p class="col-md-3 fw-semibold">{{ job.employer.company_name }}</p>
+                <p class="col-md-3 fw-semibold"><i class="bi bi-geo-alt-fill"></i>{{ job.location }}</p>
+                <p class="col-md-3 fw-semibold">{{ job.job_type }}</p>
+                <p class="col-md-3 fw-semibold">&#8377;{{ job.salary }}</p>
+            </div>
+        
+            <div class="pt-3">
+                <p>
+                <span class="fw-semibold">Skills_Required: </span><span style="font-weight: 400;">{{ job.skills_required }}</span>
+                </p>
+                <p>
+                    <span class="fw-semibold">Posted on: </span>{{ job.created_at|date:"M d, Y" }}
+                </p>
+            </div>
+            <div class="pt-5">
+                <p>
+                    <span class="fw-semibold fs-5 d-inline-block pb-2">Description: </span><br>
+                    <span class="job-desc fw-light fs-6" style="font-weight: 400;">
+                        {{ job.job_description|linebreaksbr|safe }}
+                    </span>
+                </p>
+            <div class="d-flex justify-content-center gap-5 pt-5 pb-4">
+                <a href="{% url 'edit_job' job.id %}" class="btn btn-primary w-25 fw-bold me-2">Edit</a>
+                <a href="{% url 'delete_job' job.id %}" class="btn btn-danger w-25 fw-bold">Delete</a>
+                <a href="{% url 'job_applications' job.id %}" class="btn btn-info w-25 fw-bold">Applications</a>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock content%}

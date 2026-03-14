@@ -1,0 +1,41 @@
+{%extends 'employer_base.html'%}
+{%block content%}
+    <h3 class="mb-3 text-center mt-4">Job Applications</h3>
+
+<table class="table table-bordered table-striped mx-auto" style="width:85%;">
+    <thead class="table-dark">
+        <tr>
+            <th>#</th>
+            <th>Applicant Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Education</th>
+            <th>Percentage</th>
+            <th>Applied Date</th>
+            <th>Resume</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for app in applications %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ app.fullname }}</td>
+            <td>{{ app.email }}</td>
+            <td>{{ app.phone }}</td>
+            <td>{{ app.higher_education }}</td>
+            <td>{{ app.percentage }}</td>
+            <td>{{ app.applied_at|date:"d-m-y" }}</td>
+            <td>
+                <a href="{{ app.resume.url }}" class="btn btn-sm btn-primary">
+                    View Resume
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5" class="text-center">No applications found</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{%endblock content%}

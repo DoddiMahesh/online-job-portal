@@ -1,0 +1,21 @@
+{%extends 'employer_base.html'%}
+{%block content%}
+  <div  class="container mt-5" style="width: 40%;">
+    <div class="card shadow-lg p-4 justify-content-center align-items-center">
+      <h2 class="text-center mb-4 fw-bold">Create Employer Profile</h2>
+      <form method="POST"  class="p-4 d-grid gap-3 px-4 fw-semibold">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary d-block mx-auto w-50">Create</button>
+      </form>
+
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-warning">
+          {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+  </div>
+{%endblock content%}

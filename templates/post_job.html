@@ -1,0 +1,49 @@
+{%extends 'employer_base.html'%}
+{%block content%}
+    <h2 class="text-center fw-bold pt-3">Post Job</h2>
+    <div class="container mt-5" style="width: 60%;">
+        <div class="card shadow-sm p-4">
+            <h2 class="text-center mb-4 fw-bold">Job Details</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Job Title :</label>
+                    <input type="text" name="job_title" class="form-control" value="{{ form.job_title.value|default:'' }}" placeholder="Enter Job Title">
+                    <p class="text-danger">{{ form.job_title.errors }}</p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Location :</label>
+                    <input type="text" name="location" class="form-control" value="{{ form.location.value|default:'' }}" placeholder="e.g: Hyderabad">
+                    <p class="text-danger">{{ form.location.errors }}</p>
+                </div>
+                <div class="mb-3">
+                    <label for="job_type" class="form-label fw-semibold">Job Type :</label>
+                    <select name="job_type" class="form-select">
+                        <option value="Full-Time" {% if form.job_type.value == "Full-Time" %}selected{% endif %}>Full-Time</option>
+                        <option value="Part-Time" {% if form.job_type.value == "Part-Time" %}selected{% endif %}>Part-Time</option>
+                        <option value="Internship" {% if form.job_type.value == "Internship" %}selected{% endif %}>Internship</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Skills Required :</label>
+                    <input type="text" name="skills_required" class="form-control" value="{{ form.skills_required.value|default:'' }}" placeholder="e.g: Python,Django..">
+                    <p class="text-danger">{{ form.skills_required.errors }}</p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Salary :</label>
+                    <input type="text" name="salary" class="form-control" value="{{ form.salary.value|default:'' }}" placeholder="e.g: 8-10 LPA">
+                    <p class="text-danger">{{ form.salary.errors }}</p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Description :</label><br>
+                    {{ form.job_description }}
+                    <p class="text-danger">{{ form.job_description.errors }}</p>
+                </div>  
+
+                <button type="submit" class="btn btn-primary d-block mx-auto w-50">Post</button><br>
+            </form>
+            <p class="text-center text-success">{{msg}}</p>
+        </div>
+    </div>
+{%endblock content%}
+

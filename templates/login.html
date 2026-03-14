@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+{%block content%}
+    <div class="container mt-5" style="width: 30%;">
+        <div class="card shadow-lg p-4 justify-content-center align-items-center">
+            <h2 class="text-center mb-4 fw-bold">User Login</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Username : </label>
+                    {{ form.username }}
+                    {% for error in form.username.errors %}
+                        <p class="text-danger fw-semibold text-center" style="font-size:12px;">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Password : </label>
+                    {{ form.password }}
+                    {% for error in form.password.errors %}
+                        <p class="text-danger fw-semibold text-center" style="font-size:12px;">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="btn btn-primary d-block mx-auto w-50">Login</button><br>
+            </form>
+            <a href="/register">Signup</a>
+        </div>
+    </div>
+{%endblock content%}
