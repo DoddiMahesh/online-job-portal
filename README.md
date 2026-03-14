@@ -6,6 +6,7 @@ Django job portal web application with job search, filtering, and job applicatio
 - User registration and login for Job Seekers and Employers
 - Employers can post, update, and delete job listings
 - Job seekers can search and filter jobs by skills and location
+- Resume upload functionality for job applications
 - Job application system with duplicate application prevention
 - Employers can view applicants for their posted jobs
 - Clean and responsive UI using Bootstrap
